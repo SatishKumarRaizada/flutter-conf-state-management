@@ -1,0 +1,52 @@
+[
+    {
+      "name": "Dry Container",
+      "image":"assets/images/dry.png",
+      "age": "From 12 to 15 years",
+      "condition": "No damage reported.",
+      "loadability": "Yes",
+      "description": "We connect"
+    },
+    {
+      "name": "Special",
+      "image":"assets/images/special.png",
+      "age": "From 15 to 17 years",
+      "condition": "No damage reported.",
+      "loadability": "Yes",
+      "description": "At Maersk"
+    },
+    {
+      "name": "Genset Clip-On",
+      "image":"assets/images/genset_clip_on.png",
+      "age": "From 16 to 20 years",
+      "condition": "No damage reported.",
+      "loadability": "Yes",
+      "description": "The refrigerated"
+    },
+    {
+      "name": "Genset Under Slung",
+      "image":"assets/images/genset_under_slung.png",
+      "age": "From 16 to 20 years",
+      "condition": "No damage reported.",
+      "loadability": "Yes",
+      "description": "The refrigerated"
+    },
+    {
+      "name": "Gear Bin",
+      "image":"assets/images/gear_bin.png",
+      "age": "From 20 to 22 years",
+      "condition": "No damage reported.",
+      "loadability": "Yes",
+      "description": "The refrigerated"
+    },
+    {
+      "name": "Power Pack",
+      "image":"assets/images/power_pack.png",
+      "age": "From 18 to 20 years",
+      "condition": "No damage reported.",
+      "loadability": "Yes",
+      "description": "The refrigerated"
+    }
+    
+  ]
+
