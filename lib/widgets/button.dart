@@ -21,7 +21,6 @@ class FlutterTextButton extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
         minimumSize: Size(buttonWidth, buttonHeight),
-        primary: Colors.white,
       ),
       onPressed: () {
         onTap();

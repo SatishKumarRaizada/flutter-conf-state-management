@@ -34,8 +34,8 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         backgroundColor: AppColors.appColor,
-        primary: AppColors.white,
         elevation: 0.0,
+        foregroundColor: AppColors.white,
         padding: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
@@ -53,7 +53,6 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: TextButton.styleFrom(
-        primary: AppColors.black,
         animationDuration: const Duration(milliseconds: 400),
         elevation: 0.0,
         shape: RoundedRectangleBorder(
@@ -177,7 +176,6 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        primary: Colors.white,
         padding: const EdgeInsets.all(20.0),
         backgroundColor: Colors.grey.shade900,
         elevation: 0.2,
@@ -201,7 +199,7 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         backgroundColor: AppColors.grey,
-        primary: AppColors.white,
+        foregroundColor: AppColors.white,
         elevation: 0.0,
         padding: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(

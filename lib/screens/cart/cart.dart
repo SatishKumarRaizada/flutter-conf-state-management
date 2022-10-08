@@ -3,13 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_shopping/state/cart/cart.dart';
 import 'package:my_shopping/widgets/button.dart';
 
-class ItemCartScreen extends StatefulWidget {
+class ItemCartScreen extends StatelessWidget {
   const ItemCartScreen({Key? key}) : super(key: key);
-  @override
-  State<ItemCartScreen> createState() => _ItemCartScreenState();
-}
 
-class _ItemCartScreenState extends State<ItemCartScreen> {
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
@@ -24,8 +20,7 @@ class _ItemCartScreenState extends State<ItemCartScreen> {
           ),
           bottomSheet: itemList.isNotEmpty
               ? Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
                   child: FlutterTextButton(
                     buttonWidth: _width,
                     buttonText: 'PROCEED TO CHECKOUT',
@@ -56,30 +51,22 @@ class _ItemCartScreenState extends State<ItemCartScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  _itemRow('Name', itemList[index].name!),
+                                  _itemRow(_width, 'Name', itemList[index].name!),
                                   SizedBox(height: _height * 0.01),
-                                  _itemRow(
-                                    'Loadability',
-                                    itemList[index].loadability!,
-                                  ),
+                                  _itemRow(_width, 'Loadability', itemList[index].loadability!),
                                   SizedBox(height: _height * 0.02),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Card(
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          side: BorderSide(
-                                              width: 1,
-                                              color: Colors.grey.shade200),
+                                          borderRadius: BorderRadius.circular(8.0),
+                                          side: BorderSide(width: 1, color: Colors.grey.shade200),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
                                               const InkWell(
                                                 child: Icon(Icons.remove),
@@ -116,13 +103,11 @@ class _ItemCartScreenState extends State<ItemCartScreen> {
     );
   }
 
-  Widget _itemRow(String title, String value) {
-    final _size = MediaQuery.of(context).size;
-    final _width = _size.width;
+  Widget _itemRow(double width, String title, String value) {
     return Row(
       children: [
         Text('$title:'),
-        SizedBox(width: _width * 0.02),
+        SizedBox(width: width * 0.02),
         Text(value),
       ],
     );

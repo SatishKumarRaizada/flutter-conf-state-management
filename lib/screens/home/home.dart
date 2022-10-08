@@ -7,13 +7,8 @@ import 'package:my_shopping/screens/cart/load_item.dart';
 import 'package:my_shopping/state/cart/cart.dart';
 import 'package:my_shopping/state/theme/app_theme.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   final _sun = 'assets/images/sun.png';
   final _moon = 'assets/images/moon.png';
   @override
@@ -26,16 +21,15 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, ref, child) {
         // 1. Provider to watch the state of themeProvider
         var isDarkMode = ref.watch(themeProvider).darkMode;
-        final theme = Theme.of(context);
         // 2. NotifierListener Provider to watch the state of item list
         final itemList = ref.watch(ItemList.stateNotifierProvider);
+
         // 3. Future provider to get list of items from json file
         // AsyncValue<T> is the class used to safely manipulate asynchronous data
-        AsyncValue<List<ItemListModel>> _itemList = ref.watch(itemsList);
+        AsyncValue<List<ItemListModel>> _itemList = ref.watch(itemsListProvider);
 
         /* when() method is used to map the data, loading, and error states
            to different widgets */
-
         return _itemList.when(
           loading: () => const Scaffold(
             body: CircularProgressIndicator(),
@@ -49,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Switch(
                     value: isDarkMode,
                     onChanged: (bool theme) {
-                      ref.read(themeProvider).toggleThemeMode();
+                      ref.read(themeProvider.notifier).toggleThemeMode();
                     },
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     activeColor: Colors.black,
@@ -67,14 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: const Icon(CupertinoIcons.cart),
                         ),
-                        itemList.isNotEmpty
-                            ? Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  '${itemList.length}',
-                                ),
-                              )
-                            : const SizedBox(),
+                        Visibility(
+                          visible: itemList.isNotEmpty,
+                          child: Align(
+                              alignment: Alignment.topRight, child: Text('${itemList.length}')),
+                        ),
                       ],
                     ),
                   ),
@@ -91,8 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                         ),
                         itemCount: items.length,
@@ -112,22 +102,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           items[index].image!,
                                           width: _width * 0.2,
                                         ),
                                         SizedBox(height: _height * 0.01),
-                                        _itemRow('Type', items[index].name!),
+                                        _itemRow(context, 'Type', items[index].name!),
                                         SizedBox(height: _height * 0.005),
-                                        _itemRow('Age', items[index].age!),
+                                        _itemRow(context, 'Age', items[index].age!),
                                         SizedBox(height: _height * 0.005),
-                                        _itemRow(
-                                          'Loadability',
-                                          items[index].loadability!,
-                                        ),
+                                        _itemRow(context, 'Loadability', items[index].loadability!),
                                       ],
                                     ),
                                   ),
@@ -137,10 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alignment: Alignment.topRight,
                                 child: IconButton(
                                   onPressed: () {
-                                    ref
-                                        .watch(ItemList
-                                            .stateNotifierProvider.notifier)
-                                        .addItem(
+                                    ref.watch(ItemList.stateNotifierProvider.notifier).addItem(
                                           items[index],
                                         );
                                   },
@@ -162,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _itemRow(String title, String value) {
+  Widget _itemRow(BuildContext context, String title, String value) {
     final _size = MediaQuery.of(context).size;
     final _width = _size.width;
     return Row(
