@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         // 1. Provider to watch the state of themeProvider
         var isDarkMode = ref.watch(themeProvider).darkMode;
         // 2. NotifierListener Provider to watch the state of item list
-        final itemList = ref.watch(ItemList.stateNotifierProvider);
+        final itemList = ref.watch(ItemList.itemListStateProvider);
 
         // 3. Future provider to get list of items from json file
         // AsyncValue<T> is the class used to safely manipulate asynchronous data
@@ -123,9 +123,9 @@ class HomeScreen extends StatelessWidget {
                                 alignment: Alignment.topRight,
                                 child: IconButton(
                                   onPressed: () {
-                                    ref.watch(ItemList.stateNotifierProvider.notifier).addItem(
-                                          items[index],
-                                        );
+                                    ref
+                                        .read(ItemList.itemListStateProvider.notifier)
+                                        .addItem(items[index]);
                                   },
                                   icon: const Icon(CupertinoIcons.add_circled),
                                 ),

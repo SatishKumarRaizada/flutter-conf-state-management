@@ -3,7 +3,7 @@ import 'package:my_shopping/config/model/container.dart';
 
 class ItemList extends StateNotifier<List<ItemListModel>> {
   ItemList() : super([]);
-  static final stateNotifierProvider =
+  static final itemListStateProvider =
       StateNotifierProvider<ItemList, List<ItemListModel>>((ref) => ItemList());
   ItemListModel _current = ItemListModel();
   ItemListModel get current => _current;

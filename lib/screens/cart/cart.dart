@@ -13,7 +13,7 @@ class ItemCartScreen extends StatelessWidget {
     final _width = _size.width;
     return Consumer(
       builder: (context, ref, child) {
-        final itemList = ref.watch(ItemList.stateNotifierProvider);
+        final itemList = ref.watch(ItemList.itemListStateProvider);
         return Scaffold(
           appBar: AppBar(
             title: const Text('Cart'),
@@ -72,7 +72,7 @@ class ItemCartScreen extends StatelessWidget {
                                                 child: Icon(Icons.remove),
                                               ),
                                               SizedBox(width: _width * 0.03),
-                                              const Text('2'),
+                                              const Text('1'),
                                               SizedBox(width: _width * 0.03),
                                               const InkWell(
                                                 child: Icon(Icons.add),

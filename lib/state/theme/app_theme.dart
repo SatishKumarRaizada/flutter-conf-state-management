@@ -7,7 +7,6 @@ final themeProvider = ChangeNotifierProvider.autoDispose((ref) {
 
 class ChangeThemeState extends ChangeNotifier {
   bool darkMode = false;
-
   void toggleThemeMode() {
     darkMode = !darkMode;
     notifyListeners();
