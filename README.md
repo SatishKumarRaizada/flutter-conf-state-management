@@ -11,7 +11,7 @@ A new Flutter application with RIVERPOD as state management.
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/Maersk-Global/my_shopping.git
+https://github.com/SatishKumarRaizada/flutter-conf-state-management.git
 ```
 
 **Step 2:**
@@ -110,38 +110,3 @@ class ItemList extends StateNotifier<List<ItemListModel>> {
 * [Riverpod](https://pub.dev/packages/flutter_riverpod) (State Management)
 * [Equatable](https://pub.dev/packages/equatable) (Comparing objects)
 
-
-### Folder Structure
-Here is the core folder structure which flutter provides.
-
-```
-flutter-app/
-|- android
-|- build
-|- assets
-|- ios
-|- lib
-|- test
-```
-
-Here is the folder structure we have been using in this project
-
-```
-lib/
-|- screen/
-|- theme/
-|- widgets/
-```
-
-
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://github.com/Maersk-Global/mobile_cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
